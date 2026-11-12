@@ -1,13 +1,8 @@
-# BEAUTY SPACE ARCHIVE
+# BEAUTY INTERIORS
 
-A static HTML image archive prepared for GitHub Pages and mobile Safari.
+모바일 Safari에 맞춘 뷰티 인테리어 레퍼런스 아카이브입니다.
 
-## Files
-- `index.html`: archive page, search, category filters, image detail dialog, and font-size controls.
-- `images/`: 150 local JPEG images used by the page.
-
-## Font-size controls
-Use **A−** and **A+** to adjust the text from 85% to 130% in 5% steps. **기본** restores 100%. The selected size is saved in the browser when local storage is available. Card and dialog content expands naturally as text grows.
-
-## GitHub Pages
-Upload `index.html`, the complete `images/` folder, and this README to the repository root. In **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/(root)`, then save.
+- `index.html`을 GitHub Pages 루트에 둡니다.
+- `images/` 폴더 전체를 같은 위치에 둡니다.
+- 현장체험, 수업 장면, 행사, 포스터, 인물 중심 사진은 제외하고 공간 내부 사진만 선별했습니다.
+- 글꼴 크기 조절(A− / 기본 / A+)을 지원합니다.

@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f6f2ea">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="description" content="국내 대학 미용·뷰티학과 시설을 실제 설계 레퍼런스로 살펴보는 이미지 아카이브.">
-  <title>BEAUTY SPACE ARCHIVE</title>
+  <meta name="description" content="헤어 살롱, 메이크업 스튜디오, 네일 및 에스테틱 공간 인테리어 레퍼런스.">
+  <title>BEAUTY INTERIOR ARCHIVE</title>
   <style>
     :root {
       --ink:#201e1b;
@@ -355,7 +355,7 @@
   </style>
 </head>
 <body>
-  <header><p class="eyebrow">KOREA UNIVERSITY BEAUTY INTERIOR REFERENCE</p><h1>BEAUTY SPACE<br>ARCHIVE</h1><p class="sub">국내 대학 미용·뷰티학과 시설을 실제 설계 레퍼런스로 살펴보는 오프라인 이미지 아카이브. 현재 공식 출처 확인을 마친 150장을 수록했습니다.</p></header>
+  <header><p class="eyebrow">INTERIOR REFERENCE COLLECTION</p><h1>BEAUTY<br>INTERIORS</h1><p class="sub">헤어 살롱 · 메이크업 스튜디오 · 네일 · 에스테틱. 실제 공간 사진만 모은 인테리어 레퍼런스 아카이브입니다.</p></header>
   <main>
     <div class="reading-tools" role="group" aria-label="글자 크기 조절">
       <span class="reading-label">글자 크기</span>
@@ -366,51 +366,806 @@
         <button type="button" id="fontUp" aria-label="글자 크게">A+</button>
       </div>
     </div>
-    <div class="controls"><input id="search" type="search" placeholder="대학명 또는 공간명 검색" aria-label="검색"><div class="filters" id="filters"></div></div>
-    <div class="meta"><span id="count"></span><span>사진을 선택하면 원본 출처를 확인할 수 있습니다.</span></div>
+    <div class="controls"><input id="search" type="search" placeholder="공간 유형 또는 출처 검색" aria-label="공간 검색"><div class="filters" id="filters"></div></div>
+    <div class="meta"><span id="count"></span><span>사진을 누르면 크게 보고 원본 출처를 확인할 수 있습니다.</span></div>
     <section class="grid" id="grid" aria-live="polite"></section>
-    <section class="patterns">
-      <p class="eyebrow">SPACE PATTERNS</p><h2>대학 뷰티 실습 공간에서 반복되는 구성</h2>
-      <div class="pattern-grid">
-        <div><strong>헤어</strong><br>거울과 작업 의자를 벽면 또는 아일랜드에 반복 배치하고, 샴푸 구역과 약제·기기 수납을 분리합니다. 거울 앞 작업면은 균일한 조도가 핵심입니다.</div>
-        <div><strong>메이크업·네일</strong><br>개별 작업대, 거울, 국부 조명과 전기 콘센트가 촘촘히 배치됩니다. 긴 테이블형 배치는 수업 관찰과 재료 공유에 유리합니다.</div>
-        <div><strong>피부·에스테틱</strong><br>베드 간 간격과 시선 차단, 세면·소독·린넨 수납을 함께 계획합니다. 습식 설비가 있는 준비 공간을 인접시키는 구성이 반복됩니다.</div>
-        <div><strong>공통 구조</strong><br>학생의 실습 동선과 교사의 시야를 동시에 확보하도록 작업 구역과 재료·세척·대기 구역을 나눕니다. 노출 천장 설비, 내오염 바닥, 밝은 벽면이 자주 보입니다.</div>
-      </div>
-    </section>
   </main>
-  <dialog id="lightbox"><div class="dialog-inner"><img id="largeImage" alt=""><section class="detail"><button class="close" id="close">닫기</button><p class="tag" id="detailType"></p><h2 id="detailSchool"></h2><p id="detailSpace"></p><p>이 이미지는 해당 대학의 공식 학과 또는 시설 안내 페이지에서 수집한 로컬 사본입니다.</p><p><a id="source" href="#" target="_blank" rel="noreferrer">원본 출처 페이지 열기 ↗</a></p></section></div></dialog>
+  <dialog id="lightbox"><div class="dialog-inner"><img id="largeImage" alt=""><section class="detail"><button class="close" id="close">닫기</button><p class="tag" id="detailType"></p><h2 id="detailSchool"></h2><p>공간 레퍼런스 이미지입니다. 원본 출처는 아래 링크에서 확인할 수 있습니다.</p><p><a id="source" href="#" target="_blank" rel="noreferrer">원본 출처 페이지 열기 ↗</a></p></section></div></dialog>
   <script>
     'use strict';
-    const groups = [
-      ['경북전문대학교','헤어·메이크업·피부','실습실 시설','hair_makeup_skin','https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025',1,11],
-      ['김해대학교','뷰티케어 실습실','실습 공간','beauty_lab','https://inter.gimhae.ac.kr/inter/boardview/3/79',12,17],
-      ['대전보건대학교','메이크업 실습실','메이크업','makeup_lab','https://www.hit.ac.kr/beautycare/introduction-lab/view/id/38168',18,21],
-      ['중부대학교','헤어·메이크업 실습실','헤어·메이크업','hair_makeup_lab','https://www.joongbu.ac.kr/gallery.es?act=view&b_list=10&bid=0112&list_no=12057&mid=i30504000000',22,23],
-      ['동명대학교','헤어디자인·뷰티스타트업랩실','헤어·뷰티랩','hair_startup_lab','https://www.tu.ac.kr/hairdesign/sub07_01.do?articleNo=80120&mode=view',24,25],
-      ['호남대학교','뷰티미용학과 시설','뷰티 시설','beauty_facility','https://beauty.honam.ac.kr/',26,27],
-      ['용인예술과학대학교','뷰티케어과 학과시설','메이크업·헤어·피부·스튜디오','beauty_facility','https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024',28,39],
-      ['호남대학교','뷰티미용학과 시설','헤어·에스테틱·메이크업·네일·스튜디오','beauty_facility','https://beauty.honam.ac.kr/',40,47],
-      ['우송정보대학','뷰티디자인학부 실습실','의료미용·네일·메이크업·헤어','beauty_facility','https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107',48,58],
-      ['백석문화대학교','토탈뷰티학과 실습실','헤어·피부·메이크업·네일','beauty_facility','https://sanhak.bscu.ac.kr/beauty/6566/subview.do',59,80],
-      ['서경대학교','뷰티아트센터·교내 뷰티샵','헤어·메이크업·피부·네일','beauty_facility','https://lifeedu.skuniv.ac.kr/major_beauty_overview',81,93],
-      ['서경대학교','피부미용 실습실','피부·에스테틱','beauty_facility','https://ucon.skuniv.ac.kr/undergraduate_gallery/35717',94,101],
-      ['계명문화대학교','뷰티아트학부 메이크업전공','메이크업','beauty_facility','https://www.kmcu.ac.kr/beautyarts/',102,106],
-      ['계명문화대학교','뷰티스킨테라피과','피부·에스테틱','beauty_facility','https://www.kmcu.ac.kr/skin/',107,111],
-      ['계명문화대학교','헤어디자인과','헤어','beauty_facility','https://www.kmcu.ac.kr/hair/',112,114],
-      ['계명문화대학교','메이크업 실습 수업','메이크업','beauty_facility','https://www.kmcu.ac.kr/beautyarts/',115,121],
-      ['계명문화대학교','네일·메이크업 전공','네일·메이크업','beauty_facility','https://www.kmcu.ac.kr/nail/',122,128],
-      ['대구공업대학교','헤어디자인과 교육시설','헤어·메이크업·샴푸·네일·피부','beauty_facility','https://beauty.ttc.ac.kr/about/facilities',129,134],
-      ['대전과학기술대학교','뷰티디자인계열 시설','헤어·메이크업·네일·피부','beauty_facility','https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019',135,150]
-    ];
-
-    const items = groups.flatMap(([school,space,type,category,source,start,end]) =>
-      Array.from({length:end-start+1},(_,i)=>({
-        school,space,type,category,source,
-        file:`images/${String(start+i).padStart(3,'0')}.jpg`
-      }))
-    );
-
+    const items = [
+  {
+    "id": 1,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/001.jpg"
+  },
+  {
+    "id": 2,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/002.jpg"
+  },
+  {
+    "id": 3,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/003.jpg"
+  },
+  {
+    "id": 4,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/004.jpg"
+  },
+  {
+    "id": 5,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/005.jpg"
+  },
+  {
+    "id": 6,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/006.jpg"
+  },
+  {
+    "id": 7,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/007.jpg"
+  },
+  {
+    "id": 8,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/008.jpg"
+  },
+  {
+    "id": 9,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/009.jpg"
+  },
+  {
+    "id": 10,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/010.jpg"
+  },
+  {
+    "id": 11,
+    "school": "경북전문대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025",
+    "file": "images/011.jpg"
+  },
+  {
+    "id": 12,
+    "school": "김해대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://inter.gimhae.ac.kr/inter/boardview/3/79",
+    "file": "images/012.jpg"
+  },
+  {
+    "id": 13,
+    "school": "김해대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://inter.gimhae.ac.kr/inter/boardview/3/79",
+    "file": "images/013.jpg"
+  },
+  {
+    "id": 14,
+    "school": "김해대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://inter.gimhae.ac.kr/inter/boardview/3/79",
+    "file": "images/014.jpg"
+  },
+  {
+    "id": 15,
+    "school": "김해대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://inter.gimhae.ac.kr/inter/boardview/3/79",
+    "file": "images/015.jpg"
+  },
+  {
+    "id": 16,
+    "school": "김해대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://inter.gimhae.ac.kr/inter/boardview/3/79",
+    "file": "images/016.jpg"
+  },
+  {
+    "id": 17,
+    "school": "김해대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://inter.gimhae.ac.kr/inter/boardview/3/79",
+    "file": "images/017.jpg"
+  },
+  {
+    "id": 18,
+    "school": "대전보건대학교",
+    "type": "메이크업·헤어 스튜디오",
+    "source": "https://www.hit.ac.kr/beautycare/introduction-lab/view/id/38168",
+    "file": "images/018.jpg"
+  },
+  {
+    "id": 19,
+    "school": "대전보건대학교",
+    "type": "메이크업·헤어 스튜디오",
+    "source": "https://www.hit.ac.kr/beautycare/introduction-lab/view/id/38168",
+    "file": "images/019.jpg"
+  },
+  {
+    "id": 20,
+    "school": "대전보건대학교",
+    "type": "메이크업·헤어 스튜디오",
+    "source": "https://www.hit.ac.kr/beautycare/introduction-lab/view/id/38168",
+    "file": "images/020.jpg"
+  },
+  {
+    "id": 21,
+    "school": "대전보건대학교",
+    "type": "메이크업·헤어 스튜디오",
+    "source": "https://www.hit.ac.kr/beautycare/introduction-lab/view/id/38168",
+    "file": "images/021.jpg"
+  },
+  {
+    "id": 22,
+    "school": "중부대학교",
+    "type": "메이크업·헤어 스튜디오",
+    "source": "https://www.joongbu.ac.kr/gallery.es?act=view&b_list=10&bid=0112&list_no=12057&mid=i30504000000",
+    "file": "images/022.jpg"
+  },
+  {
+    "id": 23,
+    "school": "중부대학교",
+    "type": "메이크업·헤어 스튜디오",
+    "source": "https://www.joongbu.ac.kr/gallery.es?act=view&b_list=10&bid=0112&list_no=12057&mid=i30504000000",
+    "file": "images/023.jpg"
+  },
+  {
+    "id": 24,
+    "school": "동명대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://www.tu.ac.kr/hairdesign/sub07_01.do?articleNo=80120&mode=view",
+    "file": "images/024.jpg"
+  },
+  {
+    "id": 25,
+    "school": "동명대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://www.tu.ac.kr/hairdesign/sub07_01.do?articleNo=80120&mode=view",
+    "file": "images/025.jpg"
+  },
+  {
+    "id": 26,
+    "school": "호남대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/026.jpg"
+  },
+  {
+    "id": 27,
+    "school": "호남대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/027.jpg"
+  },
+  {
+    "id": 29,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/029.jpg"
+  },
+  {
+    "id": 30,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/030.jpg"
+  },
+  {
+    "id": 31,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/031.jpg"
+  },
+  {
+    "id": 32,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/032.jpg"
+  },
+  {
+    "id": 33,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/033.jpg"
+  },
+  {
+    "id": 34,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/034.jpg"
+  },
+  {
+    "id": 35,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/035.jpg"
+  },
+  {
+    "id": 36,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/036.jpg"
+  },
+  {
+    "id": 37,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/037.jpg"
+  },
+  {
+    "id": 38,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/038.jpg"
+  },
+  {
+    "id": 39,
+    "school": "용인예술과학대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024",
+    "file": "images/039.jpg"
+  },
+  {
+    "id": 40,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/040.jpg"
+  },
+  {
+    "id": 41,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/041.jpg"
+  },
+  {
+    "id": 42,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/042.jpg"
+  },
+  {
+    "id": 43,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/043.jpg"
+  },
+  {
+    "id": 44,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/044.jpg"
+  },
+  {
+    "id": 45,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/045.jpg"
+  },
+  {
+    "id": 46,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/046.jpg"
+  },
+  {
+    "id": 47,
+    "school": "호남대학교",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://beauty.honam.ac.kr/",
+    "file": "images/047.jpg"
+  },
+  {
+    "id": 48,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/048.jpg"
+  },
+  {
+    "id": 49,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/049.jpg"
+  },
+  {
+    "id": 50,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/050.jpg"
+  },
+  {
+    "id": 51,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/051.jpg"
+  },
+  {
+    "id": 52,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/052.jpg"
+  },
+  {
+    "id": 53,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/053.jpg"
+  },
+  {
+    "id": 54,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/054.jpg"
+  },
+  {
+    "id": 55,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/055.jpg"
+  },
+  {
+    "id": 56,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/056.jpg"
+  },
+  {
+    "id": 57,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/057.jpg"
+  },
+  {
+    "id": 58,
+    "school": "우송정보대학",
+    "type": "헤어·메이크업 스튜디오",
+    "source": "https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107",
+    "file": "images/058.jpg"
+  },
+  {
+    "id": 59,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/059.jpg"
+  },
+  {
+    "id": 60,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/060.jpg"
+  },
+  {
+    "id": 61,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/061.jpg"
+  },
+  {
+    "id": 62,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/062.jpg"
+  },
+  {
+    "id": 63,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/063.jpg"
+  },
+  {
+    "id": 64,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/064.jpg"
+  },
+  {
+    "id": 65,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/065.jpg"
+  },
+  {
+    "id": 66,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/066.jpg"
+  },
+  {
+    "id": 67,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/067.jpg"
+  },
+  {
+    "id": 68,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/068.jpg"
+  },
+  {
+    "id": 69,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/069.jpg"
+  },
+  {
+    "id": 70,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/070.jpg"
+  },
+  {
+    "id": 71,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/071.jpg"
+  },
+  {
+    "id": 72,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/072.jpg"
+  },
+  {
+    "id": 73,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/073.jpg"
+  },
+  {
+    "id": 74,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/074.jpg"
+  },
+  {
+    "id": 75,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/075.jpg"
+  },
+  {
+    "id": 76,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/076.jpg"
+  },
+  {
+    "id": 77,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/077.jpg"
+  },
+  {
+    "id": 78,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/078.jpg"
+  },
+  {
+    "id": 79,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/079.jpg"
+  },
+  {
+    "id": 80,
+    "school": "백석문화대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://sanhak.bscu.ac.kr/beauty/6566/subview.do",
+    "file": "images/080.jpg"
+  },
+  {
+    "id": 82,
+    "school": "서경대학교",
+    "type": "살롱·뷰티 공간",
+    "source": "https://lifeedu.skuniv.ac.kr/major_beauty_overview",
+    "file": "images/082.jpg"
+  },
+  {
+    "id": 83,
+    "school": "서경대학교",
+    "type": "살롱·뷰티 공간",
+    "source": "https://lifeedu.skuniv.ac.kr/major_beauty_overview",
+    "file": "images/083.jpg"
+  },
+  {
+    "id": 84,
+    "school": "서경대학교",
+    "type": "살롱·뷰티 공간",
+    "source": "https://lifeedu.skuniv.ac.kr/major_beauty_overview",
+    "file": "images/084.jpg"
+  },
+  {
+    "id": 87,
+    "school": "서경대학교",
+    "type": "살롱·뷰티 공간",
+    "source": "https://lifeedu.skuniv.ac.kr/major_beauty_overview",
+    "file": "images/087.jpg"
+  },
+  {
+    "id": 89,
+    "school": "서경대학교",
+    "type": "살롱·뷰티 공간",
+    "source": "https://lifeedu.skuniv.ac.kr/major_beauty_overview",
+    "file": "images/089.jpg"
+  },
+  {
+    "id": 93,
+    "school": "서경대학교",
+    "type": "살롱·뷰티 공간",
+    "source": "https://lifeedu.skuniv.ac.kr/major_beauty_overview",
+    "file": "images/093.jpg"
+  },
+  {
+    "id": 94,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/094.jpg"
+  },
+  {
+    "id": 95,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/095.jpg"
+  },
+  {
+    "id": 96,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/096.jpg"
+  },
+  {
+    "id": 97,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/097.jpg"
+  },
+  {
+    "id": 98,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/098.jpg"
+  },
+  {
+    "id": 99,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/099.jpg"
+  },
+  {
+    "id": 100,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/100.jpg"
+  },
+  {
+    "id": 101,
+    "school": "서경대학교",
+    "type": "에스테틱 룸",
+    "source": "https://ucon.skuniv.ac.kr/undergraduate_gallery/35717",
+    "file": "images/101.jpg"
+  },
+  {
+    "id": 129,
+    "school": "대구공업대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.ttc.ac.kr/about/facilities",
+    "file": "images/129.jpg"
+  },
+  {
+    "id": 130,
+    "school": "대구공업대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.ttc.ac.kr/about/facilities",
+    "file": "images/130.jpg"
+  },
+  {
+    "id": 131,
+    "school": "대구공업대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.ttc.ac.kr/about/facilities",
+    "file": "images/131.jpg"
+  },
+  {
+    "id": 132,
+    "school": "대구공업대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.ttc.ac.kr/about/facilities",
+    "file": "images/132.jpg"
+  },
+  {
+    "id": 133,
+    "school": "대구공업대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.ttc.ac.kr/about/facilities",
+    "file": "images/133.jpg"
+  },
+  {
+    "id": 134,
+    "school": "대구공업대학교",
+    "type": "헤어·뷰티 스튜디오",
+    "source": "https://beauty.ttc.ac.kr/about/facilities",
+    "file": "images/134.jpg"
+  },
+  {
+    "id": 135,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/135.jpg"
+  },
+  {
+    "id": 136,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/136.jpg"
+  },
+  {
+    "id": 138,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/138.jpg"
+  },
+  {
+    "id": 139,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/139.jpg"
+  },
+  {
+    "id": 140,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/140.jpg"
+  },
+  {
+    "id": 141,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/141.jpg"
+  },
+  {
+    "id": 142,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/142.jpg"
+  },
+  {
+    "id": 143,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/143.jpg"
+  },
+  {
+    "id": 144,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/144.jpg"
+  },
+  {
+    "id": 145,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/145.jpg"
+  },
+  {
+    "id": 146,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/146.jpg"
+  },
+  {
+    "id": 147,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/147.jpg"
+  },
+  {
+    "id": 148,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/148.jpg"
+  },
+  {
+    "id": 149,
+    "school": "대전과학기술대학교",
+    "type": "뷰티 복합 실습실",
+    "source": "https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019",
+    "file": "images/149.jpg"
+  }
+];
     const grid = document.querySelector('#grid');
     const count = document.querySelector('#count');
     const search = document.querySelector('#search');
@@ -419,7 +1174,6 @@
     const largeImage = document.querySelector('#largeImage');
     const detailType = document.querySelector('#detailType');
     const detailSchool = document.querySelector('#detailSchool');
-    const detailSpace = document.querySelector('#detailSpace');
     const source = document.querySelector('#source');
     const closeButton = document.querySelector('#close');
     const fontDown = document.querySelector('#fontDown');
@@ -433,7 +1187,7 @@
     const FONT_STORAGE_KEY = 'beauty-space-font-scale-v1';
     let selected = '전체';
     let lastFocusedCard = null;
-    const categories = ['전체', ...new Set(items.map(x=>x.type))];
+    const categories = ['전체', '뷰티 복합 실습실', '헤어·메이크업 스튜디오', '헤어·뷰티 스튜디오', '살롱·뷰티 공간', '에스테틱 룸'];
 
     function clampFontScale(value) {
       const numeric = Number(value);
@@ -467,15 +1221,15 @@
       const term = search.value.trim().toLocaleLowerCase('ko');
       const visible = items.filter(x =>
         (selected === '전체' || x.type === selected) &&
-        `${x.school} ${x.space} ${x.type}`.toLocaleLowerCase('ko').includes(term)
+        `${x.school} ${x.type}`.toLocaleLowerCase('ko').includes(term)
       );
-      count.textContent = `${visible.length}장의 사진 · ${new Set(visible.map(x=>x.school)).size}개 대학`;
+      count.textContent = `${visible.length}장의 인테리어 사진 · ${new Set(visible.map(x=>x.school)).size}개 출처`;
       grid.innerHTML = visible.map(x => {
         const index = items.indexOf(x);
-        const label = `${x.school} ${x.space} 사진 자세히 보기`;
+        const label = `${x.type} · ${x.school} 공간 사진 자세히 보기`;
         return `<article data-index="${index}" tabindex="0" role="button" aria-label="${label}">
-          <img loading="lazy" decoding="async" src="${x.file}" alt="${x.school} ${x.space}">
-          <div class="card"><div class="tag">${x.type}</div><p class="school">${x.school}</p><p class="space">${x.space}</p></div>
+          <img loading="lazy" decoding="async" src="${x.file}" alt="${x.type} · ${x.school}">
+          <div class="card"><div class="tag">INTERIOR</div><p class="school">${x.type}</p><p class="space">${x.school}</p></div>
         </article>`;
       }).join('');
     }
@@ -486,10 +1240,9 @@
       if (!item) return;
       lastFocusedCard = card;
       largeImage.src = item.file;
-      largeImage.alt = `${item.school} ${item.space}`;
+      largeImage.alt = `${item.type} ${item.school}`;
       detailType.textContent = item.type;
       detailSchool.textContent = item.school;
-      detailSpace.textContent = item.space;
       source.href = item.source;
       if (typeof dialog.showModal === 'function') dialog.showModal();
       else window.open(item.file, '_blank', 'noopener');
