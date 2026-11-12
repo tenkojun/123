@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f2ea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="국내 대학 미용·뷰티학과 시설을 실제 설계 레퍼런스로 살펴보는 이미지 아카이브.">
+  <title>BEAUTY SPACE ARCHIVE</title>
+  <style>
+    :root {
+      --ink:#201e1b;
+      --paper:#f6f2ea;
+      --sand:#e6dbca;
+      --accent:#a6442e;
+      --muted:#716b62;
+      --font-scale:1;
+    }
+    * { box-sizing:border-box; }
+    html {
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+      scroll-behavior:smooth;
+      color-scheme:light;
+    }
+    body {
+      margin:0;
+      min-width:280px;
+      min-height:100vh;
+      min-height:100dvh;
+      padding-bottom:env(safe-area-inset-bottom);
+      font-family:Arial,"Malgun Gothic",sans-serif;
+      font-size:calc(16px * var(--font-scale));
+      color:var(--ink);
+      background:var(--paper);
+      -webkit-tap-highlight-color:transparent;
+    }
+    button,input { font:inherit; }
+    button { color:inherit; }
+    button:focus-visible,input:focus-visible,article:focus-visible,a:focus-visible {
+      outline:3px solid #a6442e;
+      outline-offset:3px;
+    }
+    header {
+      padding:46px max(5vw,24px) 30px;
+      border-bottom:1px solid #d8cebd;
+      background:#fcfaf5;
+    }
+    .eyebrow {
+      margin:0 0 12px;
+      color:var(--accent);
+      font-size:calc(11px * var(--font-scale));
+      font-weight:700;
+      letter-spacing:.16em;
+      line-height:1.5;
+    }
+    h1 {
+      margin:0;
+      font-family:Georgia,serif;
+      font-size:calc(clamp(34px,6vw,76px) * var(--font-scale));
+      line-height:.98;
+      letter-spacing:-.06em;
+      overflow-wrap:anywhere;
+    }
+    .sub {
+      max-width:540px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:calc(15px * var(--font-scale));
+      margin:22px 0 0;
+    }
+    main { width:100%; max-width:1600px; margin:0 auto; padding:28px max(5vw,24px) 60px; }
+    .reading-tools {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px 16px;
+      width:100%;
+      min-width:0;
+      margin:0 0 20px;
+      padding:11px 13px;
+      border:1px solid #d8cebd;
+      background:#fcfaf5;
+      border-radius:5px;
+    }
+    .reading-label {
+      color:var(--muted);
+      font-size:calc(13px * var(--font-scale));
+      font-weight:700;
+      line-height:1.4;
+    }
+    .font-actions { display:flex; align-items:center; flex-wrap:wrap; gap:7px; }
+    .font-actions button {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:42px;
+      min-height:42px;
+      padding:7px 10px;
+      border:1px solid #cfc3b0;
+      border-radius:4px;
+      background:#fffdfa;
+      color:var(--ink);
+      font-size:calc(13px * var(--font-scale));
+      line-height:1.2;
+      cursor:pointer;
+      touch-action:manipulation;
+    }
+    .font-actions button:disabled { opacity:.42; cursor:not-allowed; }
+    #fontScale { min-width:48px; text-align:center; color:var(--muted); font-size:calc(12px * var(--font-scale)); font-variant-numeric:tabular-nums; }
+    .controls {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:16px;
+      align-items:center;
+      margin-bottom:24px;
+      min-width:0;
+    }
+    input[type="search"] {
+      display:block;
+      width:100%;
+      min-width:0;
+      min-height:48px;
+      border:1px solid #cfc3b0;
+      background:#fffdfa;
+      padding:14px 16px;
+      font-size:calc(15px * var(--font-scale));
+      border-radius:4px;
+      appearance:none;
+      -webkit-appearance:none;
+    }
+    .filters {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      min-width:0;
+      max-width:100%;
+    }
+    .filters button {
+      min-height:42px;
+      border:1px solid #cfc3b0;
+      background:transparent;
+      color:var(--ink);
+      cursor:pointer;
+      padding:9px 12px;
+      font-size:calc(13px * var(--font-scale));
+      line-height:1.3;
+      border-radius:999px;
+      touch-action:manipulation;
+    }
+    .filters button.active,.filters button:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
+    .meta {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      min-width:0;
+      border-top:1px solid #d8cebd;
+      padding-top:16px;
+      color:var(--muted);
+      font-size:calc(13px * var(--font-scale));
+      line-height:1.55;
+    }
+    .meta span { min-width:0; overflow-wrap:anywhere; }
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(min(235px,100%),1fr));
+      gap:16px;
+      min-width:0;
+      margin-top:20px;
+    }
+    article {
+      min-width:0;
+      overflow:hidden;
+      background:#fffdfa;
+      border:1px solid #e0d7c9;
+      cursor:pointer;
+      transition:transform .18s ease,box-shadow .18s ease;
+    }
+    article:hover { transform:translateY(-3px); box-shadow:0 12px 28px #44351d20; }
+    article img {
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio:4 / 3;
+      object-fit:cover;
+      background:#ddd;
+    }
+    .card { min-width:0; padding:14px; overflow-wrap:anywhere; }
+    .tag {
+      color:var(--accent);
+      font-size:calc(11px * var(--font-scale));
+      font-weight:bold;
+      letter-spacing:.08em;
+      line-height:1.5;
+      overflow-wrap:anywhere;
+    }
+    .school {
+      margin:5px 0 0;
+      font-size:calc(16px * var(--font-scale));
+      font-weight:700;
+      line-height:1.4;
+      overflow-wrap:anywhere;
+    }
+    .space {
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:calc(13px * var(--font-scale));
+      line-height:1.5;
+      overflow-wrap:anywhere;
+    }
+    .patterns {
+      margin-top:56px;
+      padding-top:28px;
+      border-top:1px solid #d8cebd;
+      max-width:980px;
+    }
+    .patterns h2 {
+      margin:0 0 18px;
+      font-family:Georgia,serif;
+      font-size:calc(34px * var(--font-scale));
+      line-height:1.2;
+      overflow-wrap:anywhere;
+    }
+    .pattern-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));
+      gap:18px;
+      color:#514b43;
+      line-height:1.7;
+      font-size:calc(14px * var(--font-scale));
+    }
+    .pattern-grid strong { color:var(--ink); }
+    dialog {
+      width:min(1000px,94vw);
+      max-width:calc(100vw - 20px);
+      max-height:calc(100vh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      margin:auto;
+      overflow:auto;
+      overscroll-behavior:contain;
+      border:0;
+      padding:0;
+      border-radius:5px;
+      background:#191816;
+      color:#fff;
+      box-shadow:0 20px 70px #0008;
+    }
+    .dialog-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,290px); min-width:0; }
+    .dialog-inner img {
+      display:block;
+      width:100%;
+      min-width:0;
+      max-height:76vh;
+      max-height:76dvh;
+      object-fit:contain;
+      background:#111;
+    }
+    .detail { min-width:0; padding:24px; overflow-wrap:anywhere; }
+    .detail h2 {
+      margin:7px 0;
+      font-family:Georgia,serif;
+      font-size:calc(28px * var(--font-scale));
+      line-height:1.2;
+      overflow-wrap:anywhere;
+    }
+    .detail p {
+      color:#d7d0c7;
+      line-height:1.65;
+      font-size:calc(14px * var(--font-scale));
+      overflow-wrap:anywhere;
+    }
+    .detail a { display:inline-block; max-width:100%; color:#f3b5a7; line-height:1.5; overflow-wrap:anywhere; }
+    .close {
+      float:right;
+      min-height:42px;
+      padding:8px 14px;
+      color:#fff;
+      border:1px solid #666;
+      border-radius:999px;
+      background:transparent;
+      font-size:calc(13px * var(--font-scale));
+      cursor:pointer;
+      touch-action:manipulation;
+    }
+    dialog::backdrop { background:#17130dbd; }
+    @media(max-width:700px) {
+      header { padding:calc(30px + env(safe-area-inset-top)) 20px 24px; }
+      h1 { font-size:calc(clamp(38px,10vw,54px) * var(--font-scale)); line-height:1; }
+      .sub { margin-top:17px; font-size:calc(14px * var(--font-scale)); line-height:1.75; }
+      main { padding:20px 16px calc(42px + env(safe-area-inset-bottom)); }
+      .reading-tools { margin-bottom:16px; padding:10px; gap:8px 12px; }
+      .font-actions { gap:6px; }
+      .font-actions button { min-width:42px; min-height:44px; }
+      .controls { grid-template-columns:minmax(0,1fr); gap:10px; margin-bottom:18px; }
+      input[type="search"] { min-height:48px; padding:12px 14px; border-radius:6px; font-size:16px; }
+      .filters {
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        overflow-y:hidden;
+        padding:1px 1px 8px;
+        margin-right:-16px;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+      .filters::-webkit-scrollbar { display:none; }
+      .filters button { flex:0 0 auto; white-space:nowrap; padding:10px 14px; }
+      .meta { flex-direction:column; gap:5px; padding-top:13px; }
+      .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:15px; }
+      article { border-radius:3px; }
+      article:hover { transform:none; box-shadow:none; }
+      .card { padding:10px 9px 12px; }
+      .tag { line-height:1.45; }
+      .school { margin-top:4px; line-height:1.4; }
+      .space { margin-top:4px; line-height:1.45; }
+      .patterns { margin-top:38px; padding-top:22px; }
+      .patterns h2 { font-size:calc(27px * var(--font-scale)); line-height:1.25; }
+      .pattern-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+      dialog {
+        width:calc(100vw - 20px);
+        max-width:calc(100vw - 20px);
+        max-height:calc(100vh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        max-height:calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        border-radius:5px;
+      }
+      .dialog-inner { display:flex; flex-direction:column; }
+      .dialog-inner img {
+        width:100%;
+        height:auto;
+        max-height:48vh;
+        max-height:48dvh;
+        min-height:150px;
+        object-fit:contain;
+        flex:0 0 auto;
+      }
+      .detail { padding:15px 16px calc(18px + env(safe-area-inset-bottom)); }
+      .detail h2 { font-size:calc(24px * var(--font-scale)); line-height:1.2; }
+      .detail p { line-height:1.65; }
+      .close { min-height:42px; padding:8px 14px; }
+      #source { padding:5px 0; }
+    }
+    @media(max-width:360px) {
+      .grid { grid-template-columns:minmax(0,1fr); }
+      article img { aspect-ratio:16 / 10; }
+      .pattern-grid { grid-template-columns:minmax(0,1fr); }
+      .reading-tools { align-items:flex-start; }
+      .reading-label { width:100%; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition-duration:.01ms !important; animation-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header><p class="eyebrow">KOREA UNIVERSITY BEAUTY INTERIOR REFERENCE</p><h1>BEAUTY SPACE<br>ARCHIVE</h1><p class="sub">국내 대학 미용·뷰티학과 시설을 실제 설계 레퍼런스로 살펴보는 오프라인 이미지 아카이브. 현재 공식 출처 확인을 마친 150장을 수록했습니다.</p></header>
+  <main>
+    <div class="reading-tools" role="group" aria-label="글자 크기 조절">
+      <span class="reading-label">글자 크기</span>
+      <div class="font-actions">
+        <button type="button" id="fontDown" aria-label="글자 작게">A−</button>
+        <span id="fontScale" aria-live="polite">100%</span>
+        <button type="button" id="fontReset" aria-label="글자 크기 기본값">기본</button>
+        <button type="button" id="fontUp" aria-label="글자 크게">A+</button>
+      </div>
+    </div>
+    <div class="controls"><input id="search" type="search" placeholder="대학명 또는 공간명 검색" aria-label="검색"><div class="filters" id="filters"></div></div>
+    <div class="meta"><span id="count"></span><span>사진을 선택하면 원본 출처를 확인할 수 있습니다.</span></div>
+    <section class="grid" id="grid" aria-live="polite"></section>
+    <section class="patterns">
+      <p class="eyebrow">SPACE PATTERNS</p><h2>대학 뷰티 실습 공간에서 반복되는 구성</h2>
+      <div class="pattern-grid">
+        <div><strong>헤어</strong><br>거울과 작업 의자를 벽면 또는 아일랜드에 반복 배치하고, 샴푸 구역과 약제·기기 수납을 분리합니다. 거울 앞 작업면은 균일한 조도가 핵심입니다.</div>
+        <div><strong>메이크업·네일</strong><br>개별 작업대, 거울, 국부 조명과 전기 콘센트가 촘촘히 배치됩니다. 긴 테이블형 배치는 수업 관찰과 재료 공유에 유리합니다.</div>
+        <div><strong>피부·에스테틱</strong><br>베드 간 간격과 시선 차단, 세면·소독·린넨 수납을 함께 계획합니다. 습식 설비가 있는 준비 공간을 인접시키는 구성이 반복됩니다.</div>
+        <div><strong>공통 구조</strong><br>학생의 실습 동선과 교사의 시야를 동시에 확보하도록 작업 구역과 재료·세척·대기 구역을 나눕니다. 노출 천장 설비, 내오염 바닥, 밝은 벽면이 자주 보입니다.</div>
+      </div>
+    </section>
+  </main>
+  <dialog id="lightbox"><div class="dialog-inner"><img id="largeImage" alt=""><section class="detail"><button class="close" id="close">닫기</button><p class="tag" id="detailType"></p><h2 id="detailSchool"></h2><p id="detailSpace"></p><p>이 이미지는 해당 대학의 공식 학과 또는 시설 안내 페이지에서 수집한 로컬 사본입니다.</p><p><a id="source" href="#" target="_blank" rel="noreferrer">원본 출처 페이지 열기 ↗</a></p></section></div></dialog>
+  <script>
+    'use strict';
+    const groups = [
+      ['경북전문대학교','헤어·메이크업·피부','실습실 시설','hair_makeup_skin','https://beauty.kbc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN025',1,11],
+      ['김해대학교','뷰티케어 실습실','실습 공간','beauty_lab','https://inter.gimhae.ac.kr/inter/boardview/3/79',12,17],
+      ['대전보건대학교','메이크업 실습실','메이크업','makeup_lab','https://www.hit.ac.kr/beautycare/introduction-lab/view/id/38168',18,21],
+      ['중부대학교','헤어·메이크업 실습실','헤어·메이크업','hair_makeup_lab','https://www.joongbu.ac.kr/gallery.es?act=view&b_list=10&bid=0112&list_no=12057&mid=i30504000000',22,23],
+      ['동명대학교','헤어디자인·뷰티스타트업랩실','헤어·뷰티랩','hair_startup_lab','https://www.tu.ac.kr/hairdesign/sub07_01.do?articleNo=80120&mode=view',24,25],
+      ['호남대학교','뷰티미용학과 시설','뷰티 시설','beauty_facility','https://beauty.honam.ac.kr/',26,27],
+      ['용인예술과학대학교','뷰티케어과 학과시설','메이크업·헤어·피부·스튜디오','beauty_facility','https://dept.ysc.ac.kr/beauty/CMS/Contents/Contents.do?mCode=MN024',28,39],
+      ['호남대학교','뷰티미용학과 시설','헤어·에스테틱·메이크업·네일·스튜디오','beauty_facility','https://beauty.honam.ac.kr/',40,47],
+      ['우송정보대학','뷰티디자인학부 실습실','의료미용·네일·메이크업·헤어','beauty_facility','https://cosme.wsi.ac.kr/page/index.jsp?code=cosme0107',48,58],
+      ['백석문화대학교','토탈뷰티학과 실습실','헤어·피부·메이크업·네일','beauty_facility','https://sanhak.bscu.ac.kr/beauty/6566/subview.do',59,80],
+      ['서경대학교','뷰티아트센터·교내 뷰티샵','헤어·메이크업·피부·네일','beauty_facility','https://lifeedu.skuniv.ac.kr/major_beauty_overview',81,93],
+      ['서경대학교','피부미용 실습실','피부·에스테틱','beauty_facility','https://ucon.skuniv.ac.kr/undergraduate_gallery/35717',94,101],
+      ['계명문화대학교','뷰티아트학부 메이크업전공','메이크업','beauty_facility','https://www.kmcu.ac.kr/beautyarts/',102,106],
+      ['계명문화대학교','뷰티스킨테라피과','피부·에스테틱','beauty_facility','https://www.kmcu.ac.kr/skin/',107,111],
+      ['계명문화대학교','헤어디자인과','헤어','beauty_facility','https://www.kmcu.ac.kr/hair/',112,114],
+      ['계명문화대학교','메이크업 실습 수업','메이크업','beauty_facility','https://www.kmcu.ac.kr/beautyarts/',115,121],
+      ['계명문화대학교','네일·메이크업 전공','네일·메이크업','beauty_facility','https://www.kmcu.ac.kr/nail/',122,128],
+      ['대구공업대학교','헤어디자인과 교육시설','헤어·메이크업·샴푸·네일·피부','beauty_facility','https://beauty.ttc.ac.kr/about/facilities',129,134],
+      ['대전과학기술대학교','뷰티디자인계열 시설','헤어·메이크업·네일·피부','beauty_facility','https://finance.dst.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0015&mCode=MN019',135,150]
+    ];
+
+    const items = groups.flatMap(([school,space,type,category,source,start,end]) =>
+      Array.from({length:end-start+1},(_,i)=>({
+        school,space,type,category,source,
+        file:`images/${String(start+i).padStart(3,'0')}.jpg`
+      }))
+    );
+
+    const grid = document.querySelector('#grid');
+    const count = document.querySelector('#count');
+    const search = document.querySelector('#search');
+    const filters = document.querySelector('#filters');
+    const dialog = document.querySelector('#lightbox');
+    const largeImage = document.querySelector('#largeImage');
+    const detailType = document.querySelector('#detailType');
+    const detailSchool = document.querySelector('#detailSchool');
+    const detailSpace = document.querySelector('#detailSpace');
+    const source = document.querySelector('#source');
+    const closeButton = document.querySelector('#close');
+    const fontDown = document.querySelector('#fontDown');
+    const fontUp = document.querySelector('#fontUp');
+    const fontReset = document.querySelector('#fontReset');
+    const fontScaleLabel = document.querySelector('#fontScale');
+
+    const FONT_MIN = 0.85;
+    const FONT_MAX = 1.30;
+    const FONT_STEP = 0.05;
+    const FONT_STORAGE_KEY = 'beauty-space-font-scale-v1';
+    let selected = '전체';
+    let lastFocusedCard = null;
+    const categories = ['전체', ...new Set(items.map(x=>x.type))];
+
+    function clampFontScale(value) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return 1;
+      const stepped = Math.round(numeric / FONT_STEP) * FONT_STEP;
+      return Math.min(FONT_MAX, Math.max(FONT_MIN, Number(stepped.toFixed(2))));
+    }
+
+    function readSavedFontScale() {
+      try {
+        const saved = localStorage.getItem(FONT_STORAGE_KEY);
+        return saved === null ? 1 : clampFontScale(saved);
+      } catch (_) {
+        return 1;
+      }
+    }
+
+    function applyFontScale(value, save = true) {
+      const scale = clampFontScale(value);
+      document.documentElement.style.setProperty('--font-scale', String(scale));
+      fontScaleLabel.textContent = `${Math.round(scale * 100)}%`;
+      fontDown.disabled = scale <= FONT_MIN;
+      fontUp.disabled = scale >= FONT_MAX;
+      if (save) {
+        try { localStorage.setItem(FONT_STORAGE_KEY, String(scale)); }
+        catch (_) { /* Private browsing may block storage; the control still works. */ }
+      }
+    }
+
+    function render() {
+      const term = search.value.trim().toLocaleLowerCase('ko');
+      const visible = items.filter(x =>
+        (selected === '전체' || x.type === selected) &&
+        `${x.school} ${x.space} ${x.type}`.toLocaleLowerCase('ko').includes(term)
+      );
+      count.textContent = `${visible.length}장의 사진 · ${new Set(visible.map(x=>x.school)).size}개 대학`;
+      grid.innerHTML = visible.map(x => {
+        const index = items.indexOf(x);
+        const label = `${x.school} ${x.space} 사진 자세히 보기`;
+        return `<article data-index="${index}" tabindex="0" role="button" aria-label="${label}">
+          <img loading="lazy" decoding="async" src="${x.file}" alt="${x.school} ${x.space}">
+          <div class="card"><div class="tag">${x.type}</div><p class="school">${x.school}</p><p class="space">${x.space}</p></div>
+        </article>`;
+      }).join('');
+    }
+
+    function openItem(card) {
+      const index = Number(card.dataset.index);
+      const item = items[index];
+      if (!item) return;
+      lastFocusedCard = card;
+      largeImage.src = item.file;
+      largeImage.alt = `${item.school} ${item.space}`;
+      detailType.textContent = item.type;
+      detailSchool.textContent = item.school;
+      detailSpace.textContent = item.space;
+      source.href = item.source;
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else window.open(item.file, '_blank', 'noopener');
+    }
+
+    filters.innerHTML = categories.map(x =>
+      `<button type="button" data-filter="${x}" class="${x==='전체'?'active':''}" aria-pressed="${x==='전체'?'true':'false'}">${x}</button>`
+    ).join('');
+
+    filters.addEventListener('click', event => {
+      const button = event.target.closest('button[data-filter]');
+      if (!button) return;
+      selected = button.dataset.filter;
+      [...filters.children].forEach(b => {
+        const active = b === button;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      render();
+    });
+
+    search.addEventListener('input', render);
+    grid.addEventListener('click', event => {
+      const card = event.target.closest('article[data-index]');
+      if (card) openItem(card);
+    });
+    grid.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const card = event.target.closest('article[data-index]');
+      if (!card) return;
+      event.preventDefault();
+      openItem(card);
+    });
+
+    fontDown.addEventListener('click', () => applyFontScale(readCurrentFontScale() - FONT_STEP));
+    fontUp.addEventListener('click', () => applyFontScale(readCurrentFontScale() + FONT_STEP));
+    fontReset.addEventListener('click', () => applyFontScale(1));
+
+    function readCurrentFontScale() {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue('--font-scale').trim();
+      return clampFontScale(raw || 1);
+    }
+
+    closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      if (lastFocusedCard && lastFocusedCard.isConnected) lastFocusedCard.focus();
+    });
+
+    applyFontScale(readSavedFontScale(), false);
+    render();
+  </script>
+</body>
+</html>
